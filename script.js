@@ -1,10 +1,5 @@
 let myLibrary = [];
 
-let book1 = new Book("The Hobbit", "J.R.R", 286);
-let book2 = new Book ("Atomic Habits", "James Clear",319 );
-myLibrary.push(book1);
-myLibrary.push(book2);
-
 function Book(title, author, pages) {
   this.title = title;
   this.author = author;
@@ -13,12 +8,31 @@ function Book(title, author, pages) {
 }
 
 function addBookToLibrary() {
-  let title = prompt("Enter book title: ");
-  let author = prompt("Enter book author: ");
-  let pages = prompt("Number of pages: ");
-  let book = new Book(title,author,pages);
-  myLibrary.push(book);
-  addBookToPage(book, myLibrary.length-1);
+    const modal = document.querySelector(".modal");
+    modal.style.display = "block";
+    const close = document.querySelector(".close");
+    close.onclick = function(){
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    const submitBtn = document.querySelector(".submitBtn");
+    submitBtn.onclick = function(e){
+        modal.style.display = "none";
+        e.preventDefault(); // Prevents refresh when closing modal box
+        const titleInput = document.querySelector("#title");
+        let title = titleInput.value;
+        const authorInput = document.querySelector("#author");
+        let author = authorInput.value;
+        const pagesInput = document.querySelector("#pages");
+        let pages = pagesInput.value;
+        let book = new Book(title,author,pages);
+        myLibrary.push(book);
+        addBookToPage(book, myLibrary.length-1);
+    }
 }
 
 function displayLibrary(){
