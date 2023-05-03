@@ -19,14 +19,17 @@
             <div class = "modal">
                 <div class = "modal-content">
                     <span class="close">&times;</span>
-                    <form>
+                    <form action = "javascript:void(0)">
                         <label for="title">Title:</label><br>
-                        <input type="text" id="title" name="title"><br>
+                        <input type="text" required id="title" name="title" minlength = "3" maxlength = "30"><br>
                         <label for="author">Author: </label><br>
-                        <input type="text" id="author" name="author"><br>
+                        <input type="text" required id="author" name="author"><br>
                         <label for="pages">Pages: </label><br>
-                        <input type="number" id="pages" name="pages"><br>
+                        <input type="number" required id="pages" name="pages"><br>
                         <input class = "submitBtn" type="submit" value="Submit">
+                        <span class="error">
+                            
+                        </span>
                       </form> 
                 </div>
             </div>

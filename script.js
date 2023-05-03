@@ -7,6 +7,42 @@ function Book(title, author, pages) {
   read = false;
 }
 
+const error = document.querySelector(".error");
+const title = document.querySelector("#title");
+
+title.addEventListener("input", (event) =>{
+    console.log(title.validity);
+    if(title.validity.valueMissing){
+        error.textContent = "Blank value is not okay!";
+    }
+    else if(title.validity.tooShort){
+        error.textContent = "Book title must be between 3 and 20 characters";
+    }
+    else{
+        error.textContent = ""
+    }
+})
+
+
+window.addEventListener("load", (event) =>{
+    console.log(title.validity);
+    if(title.validity.valueMissing){
+        error.textContent = "Blank value is not okay!";
+    }
+    else if(title.validity.tooShort){
+        error.textContent = "Book title must be between 3 and 20 characters";
+    }
+    else if(title.validity.tooLong){
+        error.textContent = "Book title must be between 3 and 20 characters";
+    }
+    else{
+        error.textContent = ""
+    }
+})
+
+
+
+
 function addBookToLibrary() {
     const modal = document.querySelector(".modal");
     modal.style.display = "block";
@@ -20,19 +56,19 @@ function addBookToLibrary() {
         }
       }
     const submitBtn = document.querySelector(".submitBtn");
-    submitBtn.onclick = function(e){
-        modal.style.display = "none";
-        e.preventDefault(); // Prevents refresh when closing modal box
-        const titleInput = document.querySelector("#title");
-        let title = titleInput.value;
-        const authorInput = document.querySelector("#author");
-        let author = authorInput.value;
-        const pagesInput = document.querySelector("#pages");
-        let pages = pagesInput.value;
-        let book = new Book(title,author,pages);
-        myLibrary.push(book);
-        addBookToPage(book, myLibrary.length-1);
-    }
+    // submitBtn.onclick = function(e){
+    //     modal.style.display = "none";
+    //     e.preventDefault(); // Prevents refresh when closing modal box
+    //     const titleInput = document.querySelector("#title");
+    //     let title = titleInput.value;
+    //     const authorInput = document.querySelector("#author");
+    //     let author = authorInput.value;
+    //     const pagesInput = document.querySelector("#pages");
+    //     let pages = pagesInput.value;
+    //     let book = new Book(title,author,pages);
+    //     myLibrary.push(book);
+    //     addBookToPage(book, myLibrary.length-1);
+    // }
 }
 
 function displayLibrary(){
